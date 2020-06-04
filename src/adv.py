@@ -57,9 +57,53 @@ me = Player(name, "outside")
 end_game = False
 while not end_game:
 
-    print(f'Current Location: {room[me.current_room].name}.\n "{room[me.current_room].description}"')
     # def room_info(arg):
     #     for key, value in arg.items():
     #         if key == me.current_room:
     #             print(f'Current Location: {value.name}.\n "{value.description}"')
     # room_info(room)
+    print(f'\n Current Location: {room[me.current_room].name}.\n "{room[me.current_room].description}"')
+    move = False
+    while not move:
+
+        make_move = input("\n Enter a direction to move in (n, s, e, w) or enter q to quit: ")
+        
+        if make_move == "q":
+            end_game = True
+            move = True
+        elif make_move != "n" and make_move != "s" and make_move != "e" and make_move != "w":
+            print("\n Not a valid direciton. Please try again.\n")
+        else:
+            move = True
+
+    if make_move == "n":
+        if room[me.current_room].n_to == None:
+            print("\n Hmm...looks like a dead end.\n")
+        else:
+            for key, value in room.items():
+                if value == room[me.current_room].n_to:
+                    me.current_room = key
+            
+    if make_move == "s":
+        if room[me.current_room].s_to == None:
+            print("\n Hmm...looks like a dead end.\n")
+        else:
+            for key, value in room.items():
+                if value == room[me.current_room].s_to:
+                    me.current_room = key
+
+    if make_move == "e":
+        if room[me.current_room].e_to == None:
+            print("\n Hmm...looks like a dead end.\n")
+        else:
+            for key, value in room.items():
+                if value == room[me.current_room].e_to:
+                    me.current_room = key
+
+    if make_move == "w":
+        if room[me.current_room].w_to == None:
+            print("\n Hmm...looks like a dead end.\n")
+        else:
+            for key, value in room.items():
+                if value == room[me.current_room].w_to:
+                    me.current_room = key
